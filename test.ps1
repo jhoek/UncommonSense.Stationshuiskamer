@@ -1,0 +1,1 @@
+Get-Stationshuiskamer | Format-List

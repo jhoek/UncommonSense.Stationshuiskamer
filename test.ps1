@@ -1,1 +1,1 @@
-Get-Stationshuiskamer | Format-List
+Get-Stationshuiskamer

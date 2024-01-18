@@ -8,14 +8,22 @@ function Get-Stationshuiskamer
     ConvertTo-HtmlDocument -Uri https://www.stationshuiskamer.nl/locaties/
     | Select-HtmlNode -CssSelector '.l-locations__item' -All
     | ForEach-Object {
-        $OpeningHours = $_
-        | Select-HtmlNode -CssSelector '.c-card__scheduleItem' -All
+        $Schedule = $_ | Select-HtmlNode -CssSelector '.c-card__scheduleItem' -All
+
+        $OpeningHours =
+        [System.DayOfWeek]::Monday,
+        [System.DayOfWeek]::Tuesday,
+        [System.DayOfWeek]::Wednesday,
+        [System.DayOfWeek]::Thursday,
+        [System.DayOfWeek]::Friday,
+        [System.DayOfWeek]::Saturday,
+        [System.DayOfWeek]::Sunday
         | ForEach-Object {
-            $Spans = $_ | Select-HtmlNode -CssSelector 'span' -All
+            $Spans = $Schedule[$_] | Select-HtmlNode -CssSelector 'span' -All
 
             [PSCustomObject]@{
                 PSTypeName = 'UncommonSense.Stationshuiskamer.OpeningHours'
-                Weekday    = $Spans[1] | Get-HtmlNodeText
+                Weekday    = $_
                 Times      = $Spans[2] | Get-HtmlNodeText
             }
         }

@@ -7,7 +7,16 @@
             </ViewSelectedBy>
             <TableControl>
                 <TableHeaders>
-
+                    <TableColumnHeader>
+                        <Width>20</Width>
+                    </TableColumnHeader>
+                    <TableColumnHeader>
+                        <Label>OpeningHours</Label>
+                        <Width>30</Width>
+                    </TableColumnHeader>
+                    <TableColumnHeader>
+                        <Width>60</Width>
+                    </TableColumnHeader>
                 </TableHeaders>
                 <TableRowEntries>
                     <TableRowEntry>
@@ -17,10 +26,34 @@
                                 <PropertyName>Name</PropertyName>
                             </TableColumnItem>
                             <TableColumnItem>
-                                <PropertyName>Address</PropertyName>
+                                <ScriptBlock>($_.OpeningHours | Format-Table | Out-String).Trim()</ScriptBlock>
                             </TableColumnItem>
                             <TableColumnItem>
-                                <ScriptBlock>($_.OpeningHours | Format-Table -HideTableHeaders | Out-String).Trim()</ScriptBlock>
+                                <PropertyName>Address</PropertyName>
+                            </TableColumnItem>
+                        </TableColumnItems>
+                    </TableRowEntry>
+                </TableRowEntries>
+            </TableControl>
+        </View>
+
+        <View>
+            <Name>Default</Name>
+            <ViewSelectedBy>
+                <TypeName>UncommonSense.Stationshuiskamer.OpeningHours</TypeName>
+            </ViewSelectedBy>
+            <TableControl>
+                <HideTableHeaders/>
+                <TableRowEntries>
+                    <TableRowEntry>
+                        <TableColumnItems>
+                            <TableColumnItem>
+                                <Alignment>Left</Alignment>
+                                <PropertyName>Weekday</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <Alignment>Left</Alignment>
+                                <PropertyName>Hours</PropertyName>
                             </TableColumnItem>
                         </TableColumnItems>
                     </TableRowEntry>

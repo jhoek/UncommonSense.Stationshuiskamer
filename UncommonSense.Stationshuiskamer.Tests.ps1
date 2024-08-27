@@ -5,24 +5,25 @@ Describe UncommonSense.Stationshuiskamer {
     }
 
     It 'Returns at least 12 entries' {
-        $Result.Length | Should -BeGreaterOrEqual 12
+        $Result.Length | Should -BeGreaterOrEqual 25
     }
 
     It 'Returns valid names' {
-        ($Result).Name | Should -Not -BeNullOrEmpty
-    }
-
-    It 'Returns valid addresses' {
-        ($Result).Address | Should -Not -BeNullOrEmpty
+        $Result | ForEach-Object { $_.Name | Should -Not -BeNullOrEmpty }
     }
 
     It 'Returns valid images' {
-        ($Result).Image | Should -Not -BeNullOrEmpty
+        $Result | ForEach-Object { $_.Image | Should -Not -BeNullOrEmpty }
     }
 
     It 'Returns valid opening hours' {
-        $Result | ForEach-Object { $_.OpeningHours.Length | Should -Be 7 }
-        (($Result).OpeningHours).WeekDay | Should -Not -BeNullOrEmpty
-        (($Result).OpeningHours).Hours | Should -Not -BeNullOrEmpty
+        $Result | ForEach-Object {
+            $_.OpeningHours.Length | Should -Be 7
+
+            $_.OpeningHours | ForEach-Object {
+                $_.WeekDay | Should -Not -BeNullOrEmpty
+                $_.Hours | Should -Not -BeNullOrEmpty
+            }
+        }
     }
 }

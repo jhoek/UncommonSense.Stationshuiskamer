@@ -2,6 +2,8 @@
 
 PowerShell cmdlets for retrieving Dutch Railways "Stationshuiskamer" information
 
+[![test](https://github.com/jhoek/UncommonSense.Stationshuiskamer/actions/workflows/main.yml/badge.svg)](https://github.com/jhoek/UncommonSense.Stationshuiskamer/actions/workflows/main.yml)
+
 <a name="Get-Stationshuiskamer"></a>
 ## Get-Stationshuiskamer
 ### Synopsis
@@ -11,4 +13,4 @@ Get-Stationshuiskamer [<CommonParameters>]
 Get-Stationshuiskamer [<CommonParameters>]
 ```
 ### Parameters
-<div style='font-size:small; color: #ccc'>Generated 18-01-2024 19:59</div>
+<div style='font-size:small; color: #ccc'>Generated 27-08-2024 14:04</div>

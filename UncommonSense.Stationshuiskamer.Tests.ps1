@@ -9,19 +9,20 @@ Describe UncommonSense.Stationshuiskamer {
     }
 
     It 'Returns valid names' {
-        $Result.Name | Should -Not -BeNullOrEmpty
+        ($Result).Name | Should -Not -BeNullOrEmpty
     }
 
     It 'Returns valid addresses' {
-        $Result.Address | Should -Not -BeNullOrEmpty
+        ($Result).Address | Should -Not -BeNullOrEmpty
     }
 
     It 'Returns valid images' {
-        $Result.Image | Should -Not -BeNullOrEmpty
+        ($Result).Image | Should -Not -BeNullOrEmpty
     }
 
     It 'Returns valid opening hours' {
-        $Result.OpeningHours.Length | Should -Be 7
-        $Result.OpeningHours.
+        $Result | ForEach-Object { $_.OpeningHours.Length | Should -Be 7 }
+        (($Result).OpeningHours).WeekDay | Should -Not -BeNullOrEmpty
+        (($Result).OpeningHours).Hours | Should -Not -BeNullOrEmpty
     }
 }
